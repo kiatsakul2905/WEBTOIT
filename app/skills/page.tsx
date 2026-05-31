@@ -1,5 +1,6 @@
 "use client"
 
+import type { ComponentType } from "react"
 import { useI18n } from "@/lib/i18n"
 import { ShieldCheck } from "lucide-react"
 import { competencyGroups } from "@/lib/skill-competencies"
