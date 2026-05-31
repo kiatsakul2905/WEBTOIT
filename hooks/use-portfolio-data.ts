@@ -6,6 +6,7 @@ import type {
   Education,
   SkillCategory,
   Skill,
+  WorkGalleryImage,
   PortfolioProject,
   Certificates,
   ContactInfo,
@@ -62,6 +63,15 @@ export function usePortfolio() {
     swrConfig
   )
   return { projects: data, error, isLoading }
+}
+
+export function useWorkGallery() {
+  const { data, error, isLoading } = useSWR<WorkGalleryImage[]>(
+    "/api/work-gallery",
+    fetcher,
+    swrConfig
+  )
+  return { images: data, error, isLoading }
 }
 
 export function useCertificates() {

@@ -1,8 +1,19 @@
+"use client"
+
+import { Loader2 } from "lucide-react"
 import { WorkGallery } from "@/components/work-gallery"
-import { getGalleryImages } from "@/lib/work-gallery"
+import { useWorkGallery } from "@/hooks/use-portfolio-data"
 
-export default async function WorkGalleryPage() {
-  const galleryImages = await getGalleryImages()
+export default function WorkGalleryPage() {
+  const { images, isLoading } = useWorkGallery()
 
-  return <WorkGallery images={galleryImages} />
+  if (isLoading) {
+    return (
+      <div className="flex justify-center py-20">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      </div>
+    )
+  }
+
+  return <WorkGallery images={images ?? []} />
 }

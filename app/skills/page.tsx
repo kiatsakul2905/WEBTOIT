@@ -1,54 +1,12 @@
 "use client"
 
-import type { ComponentType } from "react"
 import { useI18n } from "@/lib/i18n"
-import { ShieldCheck } from "lucide-react"
-import { competencyGroups } from "@/lib/skill-competencies"
-
-function CompetencyCard({
-  title,
-  description,
-  icon: Icon,
-  items,
-}: {
-  title: string
-  description: string
-  icon: ComponentType<{ className?: string }>
-  items: {
-    label_en: string
-    label_th: string
-    details_en: string
-    details_th: string
-  }[]
-}) {
-  const { language } = useI18n()
-
-  return (
-    <div className="rounded-3xl border border-border bg-card/80 p-6 shadow-lg shadow-card/10 ring-1 ring-ring/30 backdrop-blur-sm">
-      <div className="flex items-start gap-4">
-        <div className="shrink-0 rounded-2xl bg-secondary/10 p-4 text-foreground shadow-lg shadow-card/20">
-          <Icon className="h-6 w-6 text-primary" />
-        </div>
-        <div>
-          <h3 className="text-xl font-semibold text-foreground">{language === "en" ? title : title}</h3>
-          <p className="mt-2 text-sm leading-6 text-muted-foreground">{language === "en" ? description : description}</p>
-        </div>
-      </div>
-
-      <div className="mt-6 space-y-4">
-        {items.map((item) => (
-          <div key={item.label_en} className="rounded-2xl border border-border bg-background/80 p-4">
-            <p className="text-sm font-semibold text-foreground">{language === "en" ? item.label_en : item.label_th}</p>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">{language === "en" ? item.details_en : item.details_th}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
+import { useSkills } from "@/hooks/use-portfolio-data"
+import { Loader2, Server, CheckCircle } from "lucide-react"
 
 export default function SkillsPage() {
-  const { language, t } = useI18n()
+  const { language } = useI18n()
+  const { skillCategories, isLoading, error } = useSkills()
 
   return (
     <section className="bg-background text-foreground min-h-screen py-20">
@@ -69,45 +27,65 @@ export default function SkillsPage() {
           </p>
         </div>
 
-        <div className="grid gap-6 xl:grid-cols-2">
-          {competencyGroups.map((group) => (
-            <CompetencyCard
-              key={group.id}
-              title={language === "en" ? group.title_en : group.title_th}
-              description={language === "en" ? group.description_en : group.description_th}
-              icon={group.icon}
-              items={group.items}
-            />
-          ))}
-        </div>
-
-        <div className="rounded-3xl border border-border bg-card/80 p-8 shadow-lg shadow-card/10 ring-1 ring-ring/30 backdrop-blur-sm">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <p className="text-sm uppercase tracking-[0.2em] text-secondary-foreground">{language === "en" ? "Complementary Development Skills" : "ทักษะพัฒนาซอฟต์แวร์เสริม"}</p>
-              <h2 className="mt-3 text-2xl font-semibold text-foreground">{language === "en" ? "Automation that enhances IT support" : "ออโตเมชันที่เสริมงาน IT Support"}</h2>
-            </div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-secondary/20 px-4 py-3 text-sm font-medium text-foreground ring-1 ring-border">
-              <ShieldCheck className="h-5 w-5 text-primary" />
-              {language === "en"
-                ? "Balanced between support and scripting"
-                : "ผสานการสนับสนุนและการเขียนสคริปต์อย่างลงตัว"}
-            </div>
+        {isLoading ? (
+          <div className="flex justify-center py-20">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
           </div>
+        ) : (
+          <div className="grid gap-6 xl:grid-cols-2">
+            {skillCategories && skillCategories.length > 0 ? (
+              skillCategories.map((category) => (
+                <div key={category.id} className="rounded-3xl border border-border bg-card/80 p-6 shadow-lg shadow-card/10 ring-1 ring-ring/30 backdrop-blur-sm">
+                  <div className="flex items-start gap-4">
+                    <div className="shrink-0 rounded-2xl bg-secondary/10 p-4 text-foreground shadow-lg shadow-card/20">
+                      <Server className="h-6 w-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-foreground">
+                        {language === "en" ? category.name_en : category.name_th}
+                      </h3>
+                    </div>
+                  </div>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {[
-              { label: language === "en" ? "Python / PHP / JS" : "Python / PHP / JS", value: true },
-              { label: language === "en" ? "Supabase / Neon / MySQL" : "Supabase / Neon / MySQL", value: true },
-              { label: language === "en" ? "Google Apps Script" : "Google Apps Script", value: true },
-              { label: language === "en" ? "Discord Bot Integration" : "Discord Bot Integration", value: true },
-            ].map((item) => (
-              <div key={item.label} className="rounded-2xl border border-border bg-background/80 px-4 py-5 text-sm text-foreground">
-                {item.label}
+                  <div className="mt-6 space-y-4">
+                    {category.skills.map((skill) => (
+                      <div key={skill.id} className="rounded-2xl border border-border bg-background/80 p-4">
+                        <div className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                          <CheckCircle className="h-4 w-4 text-primary" />
+                          <span>{skill.name}</span>
+                        </div>
+                        {skill.description_en || skill.description_th ? (
+                          <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                            {language === "en" ? skill.description_en || skill.description_th : skill.description_th || skill.description_en}
+                          </p>
+                        ) : null}
+                        {skill.technologies && skill.technologies.length > 0 ? (
+                          <div className="mt-3 flex flex-wrap gap-2">
+                            {skill.technologies.map((tech) => (
+                              <span key={tech} className="rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        ) : null}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="rounded-3xl border border-border bg-card/80 p-10 text-center text-sm text-muted-foreground">
+                {error
+                  ? language === "en"
+                    ? "Could not load skills at this time. Please try again later."
+                    : "ไม่สามารถโหลดทักษะได้ในขณะนี้ กรุณาลองใหม่อีกครั้ง"
+                  : language === "en"
+                  ? "No skills are available right now."
+                  : "ยังไม่มีทักษะสำหรับแสดงในขณะนี้"}
               </div>
-            ))}
+            )}
           </div>
-        </div>
+        )}
       </div>
     </section>
   )
