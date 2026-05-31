@@ -67,8 +67,11 @@ export function WorkGallery({ images, maxItems, moreLink, moreLabel }: WorkGalle
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {gallery.map((image, index) => {
+            const normalizedPath = image.image_path.startsWith("/")
+              ? image.image_path.replace(/\/$/, "")
+              : `/${image.image_path.replace(/\/$/, "")}`
             const imageSrc = image.image_path
-              ? `${image.image_path.replace(/\/$/, "")}/${image.image_file}`
+              ? `${normalizedPath}/${image.image_file}`
               : image.image_file
             const key = `${imageSrc}-${index}`
             const title = language === "en"

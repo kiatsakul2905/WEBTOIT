@@ -13,7 +13,12 @@ export async function getGalleryImages(): Promise<WorkGalleryImage[]> {
         WHERE is_active = true
         ORDER BY sort_order ASC
       `
-      return rows as WorkGalleryImage[]
+      return (rows as WorkGalleryImage[]).map((row) => ({
+        ...row,
+        image_path: row.image_path.startsWith("/")
+          ? row.image_path.replace(/\/$/, "")
+          : `/${row.image_path.replace(/\/$/, "")}`,
+      }))
     } catch (error) {
       console.error("Error fetching gallery images from DB:", error)
     }
