@@ -35,8 +35,8 @@ export async function getGalleryImages(): Promise<WorkGalleryImage[]> {
       image_path: "/imgws/",
       title_en: file,
       title_th: file,
-      description_en: null,
-      description_th: null,
+      description_en: undefined,
+      description_th: undefined,
       sort_order: index + 1,
       is_active: true,
     }))
