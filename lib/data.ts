@@ -233,48 +233,72 @@ export const portfolioProjects = [
 ]
 
 export const certificates = [
-  {
-    id: 1,
-    title_en: "CompTIA A+ Certified",
-    title_th: "ได้รับการรับรอง CompTIA A+",
-    description_en:
-      "Core certification for computer hardware, operating systems, and basic troubleshooting techniques.",
-    description_th:
-      "ใบรับรองพื้นฐานด้านฮาร์ดแวร์คอมพิวเตอร์ ระบบปฏิบัติการ และเทคนิคการแก้ปัญหาเบื้องต้น",
-    image_url: "/file.svg",
-    technologies: ["Hardware", "OS", "Troubleshooting"],
-    is_featured: true,
-    sort_order: 1,
-    is_active: true,
-  },
-  {
-    id: 2,
-    title_en: "Cisco Certified Technician Entry",
-    title_th: "Cisco Certified Technician Entry",
-    description_en:
-      "Certification covering cabling, networking devices, and basic network diagnostics.",
-    description_th:
-      "ใบรับรองครอบคลุมการเดินสาย อุปกรณ์เครือข่าย และการวินิจฉัยเครือข่ายพื้นฐาน",
-    image_url: "/file.svg",
-    technologies: ["Cisco", "Network Diagnostics"],
-    is_featured: true,
-    sort_order: 2,
-    is_active: true,
-  },
-  {
-    id: 3,
-    title_en: "Microsoft Azure Fundamentals",
-    title_th: "Microsoft Azure Fundamentals",
-    description_en:
-      "Foundation-level validation of cloud computing concepts and Azure services for hybrid IT environments.",
-    description_th:
-      "ใบรับรองพื้นฐานด้านแนวคิดคลาวด์และบริการ Azure สำหรับสภาพแวดล้อม IT แบบไฮบริด",
-    image_url: "/file.svg",
-    technologies: ["Azure", "Cloud", "Hybrid IT"],
-    is_featured: true,
-    sort_order: 3,
-    is_active: true,
-  },
+    {
+        "id": 1,
+        "title_en": "certificate KU Digital Literacy",
+        "title_th": "ใบประกาศนียบัตร KU Digital Literacy",
+        "description_en": "A certificate recognizing essential foundational digital literacy competencies (Digital Literacy Certificate) for students and staff of Kasetsart University (KU), issued by the Office of Computer Services. The assessment evaluates knowledge and skills in computer usage, internet usage, office applications, artificial intelligence (AI), and digital law through an online examination system (exam.ku.th), aiming to enhance and modernize digital skills.",
+        "description_th": "เอกสารรับรองสมรรถนะทักษะดิจิทัลพื้นฐานที่จำเป็น (Digital Literacy Certificate) สำหรับนิสิตและบุคลากรมหาวิทยาลัยเกษตรศาสตร์ (มก.) โดยสำนักบริการคอมพิวเตอร์ ประเมินความรู้ด้านการใช้งานคอมพิวเตอร์ อินเทอร์เน็ต โปรแกรมสำนักงาน AI และกฎหมายดิจิทัล ผ่านระบบออนไลน์ (exam.ku.th) เพื่อยกระดับทักษะให้ทันสมัย",
+        "image_url": "/certificates/Screenshot 2026-02-12 135105.png",
+        "video_url": null,
+        "technologies": [],
+        "is_featured": false,
+        "sort_order": 1,
+        "is_active": true,
+        "created_at": "2026-02-12T02:03:51.354Z",
+        "updated_at": "2026-02-12T02:03:51.354Z"
+    },
+    {
+        "id": 2,
+        "title_en": "certificate completing participation KUSE AI Hackathon",
+        "title_th": "ใบประกาศนียบัตร completing participation KUSE AI Hackathon",
+        "description_en": "Participated in the KUSE AI Hackathon 2025 (June 26–28, 2025), using Python on Google Colab as the primary development environment. The competition focused on building AI solutions in Natural Language Processing (NLP) and Image Processing, emphasizing model experimentation, data preprocessing, and rapid prototyping.",
+        "description_th": "เข้าร่วมการแข่งขัน KUSE AI Hackathon 2025 ระหว่างวันที่ 26–28 มิถุนายน 2025 โดยใช้ Python บน Google Colab เป็นสภาพแวดล้อมหลักในการพัฒนา โจทย์การแข่งขันมุ่งเน้นการสร้างโซลูชันด้าน ปัญญาประดิษฐ์ (AI) ในสาขา Natural Language Processing (NLP) และ Image Processing โดยเน้นการทดลองโมเดล การเตรียมข้อมูล (data preprocessing) และการพัฒนาต้นแบบอย่างรวดเร็ว (rapid prototyping)",
+        "image_url": "/certificates/Screenshot 2026-01-09 145635.png",
+        "video_url": "https://youtube.com/watch?v=demo",
+        "technologies": [
+            "google colab",
+            "python",
+            "kaggle dataset"
+        ],
+        "is_featured": false,
+        "sort_order": 2,
+        "is_active": true,
+        "created_at": "2026-02-12T02:03:51.354Z",
+        "updated_at": "2026-02-12T02:03:51.354Z"
+    },
+    {
+        "id": 3,
+        "title_en": "AUCC-Award-Certificate",
+        "title_th": "ใบประกาศนียบัตร AUCC-Award-Certificate",
+        "description_en": "Participated in the 14th Asian Undergraduate Conference on Computing (AUCC 2026) as an oral research presenter.",
+        "description_th": "เข้าร่วมการประชุมวิชาการระดับปริญญาตรีด้านคอมพิวเตอร์ภูมิภาคเอเชีย ครั้งที่ 14 (AUCC 2026) ในฐานะผู้นำเสนอบทความวิจัยแบบบรรยาย",
+        "image_url": "/certificates/Screenshot 2026-02-12 113105.png",
+        "video_url": null,
+        "technologies": [
+            "เว็บแนะนำอาหารตามอารมณ์-ความรู้สึก"
+        ],
+        "is_featured": false,
+        "sort_order": 3,
+        "is_active": true,
+        "created_at": "2026-02-12T02:03:51.354Z",
+        "updated_at": "2026-02-12T02:03:51.354Z"
+    },
+    {
+        "id": 4,
+        "title_en": "Website Security Standards 1.0: Preparing for Modern Cyber Threats",
+        "title_th": "มาตรฐานความปลอดภัยเว็บไซต์ (Website Security Standards 1.0) การเตรียมตัวให้พร้อมรับมือภัยไซเบอร์ยุคใหม่",
+        "description_en": "\tThis course focuses on establishing knowledge and understanding of Thailand's Website Security Standards version 1.0. It aims to empower website administrators and developers to apply these standards in securing websites against increasingly complex modern cyber threats and ensuring digital trust.",
+        "description_th": "\tหลักสูตรนี้มุ่งเน้นการสร้างความรู้และความเข้าใจเกี่ยวกับมาตรฐานความปลอดภัยเว็บไซต์เวอร์ชัน 1.0 ของประเทศไทย เพื่อให้ผู้ที่เกี่ยวข้องกับการบริหารจัดการและดูแลเว็บไซต์สามารถนำไปประยุกต์ใช้ในการพัฒนาและป้องกันเว็บไซต์จากภัยคุกคามไซเบอร์ที่ซับซ้อนในปัจจุบันได้อย่างถูกต้อง",
+        "image_url": "/certificates/641431922_917945710966721_3092283332133523834_n.png",
+        "video_url": null,
+        "technologies": [],
+        "is_featured": false,
+        "sort_order": 4,
+        "is_active": true,
+        "created_at": "2026-03-06T03:26:48.252Z",
+        "updated_at": "2026-03-06T03:26:48.252Z"
+    }
 ]
 
 export const contactInfo = {
