@@ -10,8 +10,8 @@ import { ArrowRight, ExternalLink, ImageIcon } from "lucide-react"
 interface GalleryImage {
   image_file: string
   image_path: string
-  title_en?: string
-  title_th?: string
+  title_en?: string | null
+  title_th?: string | null
   description_en?: string | null
   description_th?: string | null
 }
